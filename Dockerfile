@@ -12,6 +12,7 @@ COPY ./ ./
 RUN npm run build
 
 FROM nginx
+EXPOSE 80
 
 # builder 스테이지의 특정 경로 파일들을 모두 지정한 경로로 복사.
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
