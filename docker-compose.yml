@@ -1,0 +1,12 @@
+version: "1"
+services:
+  reactapp:
+    build:
+      context: "./" # 도커 이미지를 구성하기 위한 파일과 폴더의 위치.
+      dockerfile: "Dockerfile"
+    ports:
+      - "5000:3000"
+    volumes:
+      - /usr/src/app/node_modules # /usr/src/app/node_modules는 참조하지 않겠다.
+      - ./:/usr/src/app # 
+    stdin_open: true

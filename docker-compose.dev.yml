@@ -1,0 +1,21 @@
+version: "1"
+services:
+  reactapp-dev:
+    container_name: "redisapp-dev" # 컨테이너 이름 지정.
+    build:
+      context: "./" # 도커 이미지를 구성하기 위한 파일과 폴더의 위치.
+      dockerfile: "Dockerfile.dev"
+    ports:
+      - "5000:3000"
+    volumes:
+      - "/usr/src/app/node_modules" # /usr/src/app/node_modules는 참조하지 않겠다.
+      - "./:/usr/src/app" # 
+    stdin_open: true
+  tests:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /usr/src/app/node_modules
+      - ./:/usr/src/app
+    command: ["npm", "run", "test"]
