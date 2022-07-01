@@ -7,7 +7,7 @@ services:
 
 before_install:
   - echo "Start creating an image with dockerfile"
-  - docker build -t nelta/reactapp -f Dockerfile.dev
+  - docker build -t nelta/reactapp -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true nelta/reactapp npm run test -- --coverage
